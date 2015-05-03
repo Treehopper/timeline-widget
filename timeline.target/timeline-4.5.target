@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="timeline-4.5" sequenceNumber="1430558429">
+<target name="timeline-4.5" sequenceNumber="1430689087">
   <locations>
     <location includeMode="slicer" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="true" type="InstallableUnit">
       <unit id="org.eclipse.swtbot.eclipse.feature.group" version="0.0.0"/>
@@ -55,14 +55,6 @@
     <location includeMode="slicer" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="true" type="InstallableUnit">
       <unit id="org.eclipse.sdk.ide" version="0.0.0"/>
       <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.mylyn.commons.sdk.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.mylyn.team_feature.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.mylyn.context.sdk.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.mylyn_feature.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.mylyn.context_feature.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.mylyn.sdk_feature.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.mylyn.wikitext_feature.feature.group" version="0.0.0"/>
       <repository location="http://download.eclipse.org/releases/mars/"/>
     </location>
   </locations>
