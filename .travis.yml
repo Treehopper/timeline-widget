@@ -21,3 +21,10 @@ before_script:
 script:
  - export
  - mvn -f timeline.build/pom.xml clean verify
+
+notifications:
+ email:
+  recipients:
+   - timeline-widget@hohenegger.eu
+  on_success: change
+  on_failure: always
