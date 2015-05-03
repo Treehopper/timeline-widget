@@ -14,7 +14,6 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-  	<relativePath>../timeline.build/pom.xml</relativePath>
     <groupId>timeline</groupId>
     <artifactId>timeline.build</artifactId>
     <version>0.0.1-SNAPSHOT</version>

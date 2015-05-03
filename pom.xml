@@ -11,13 +11,13 @@
 	<name>Timeline Parent</name>
 
 	<modules>
-		<module>../timeline.core</module>
-		<module>../timeline.core.tests</module>
-		<module>../timeline.ui</module>
-		<module>../timeline.ui.tests</module>
-		<module>../timeline.feature</module>
-		<module>../timeline.repository</module>
-		<module>../timeline.target</module>
+		<module>timeline.core</module>
+		<module>timeline.core.tests</module>
+		<module>timeline.ui</module>
+		<module>timeline.ui.tests</module>
+		<module>timeline.feature</module>
+		<module>timeline.repository</module>
+		<module>timeline.target</module>
 	</modules>
 
 	<properties>
@@ -99,7 +99,7 @@
 					<artifactId>findbugs-maven-plugin</artifactId>
 					<version>2.5.5</version>
 					<configuration>
-						<excludeFilterFile>${basedir}/../timeline.build/excludeFilter.xml</excludeFilterFile>
+						<excludeFilterFile>${basedir}/excludeFilter.xml</excludeFilterFile>
 					</configuration>
 				</plugin>
 			</plugins>

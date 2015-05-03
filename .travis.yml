@@ -20,7 +20,7 @@ before_script:
  
 script:
  - export
- - mvn -f timeline.build/pom.xml clean verify
+ - mvn pom.xml clean verify
 
 notifications:
  email:
