@@ -5,4 +5,6 @@ Bundle-SymbolicName: timeline.ui.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.swtbot.go;bundle-version="2.1.1",
- timeline.ui;bundle-version="1.0.0"
+ timeline.ui;bundle-version="1.0.0",
+ org.apache.log4j
+Eclipse-RegisterBuddy: org.apache.log4j
