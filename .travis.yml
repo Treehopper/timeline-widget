@@ -20,7 +20,7 @@ before_script:
  
 script:
  - export
- - mvn pom.xml clean verify
+ - mvn -f pom.xml clean verify
 
 notifications:
  email:
