@@ -1,0 +1,6 @@
+<FindBugsFilter>
+	<!-- sources of tests -->
+	<Match>
+	    <Source name="~.*Test.*" />
+	</Match>
+</FindBugsFilter>

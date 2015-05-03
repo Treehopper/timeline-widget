@@ -1,0 +1,5 @@
+target "timeline-4.5" with source configurePhase
+
+include "projects/swtbot-2.2.1.tpd"
+include "orbit/S20150202203538-Mars-M5.tpd"
+include "releasetrain/4.5-mars.tpd"

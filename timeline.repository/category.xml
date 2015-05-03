@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="Eclipse Git Plugin">
+      This is a pure Java implementation of the Git version control system and integrates it into Eclipse.
+   </description>
+   <feature url="features/timeline.feature_0.0.1.qualifier.jar" id="timeline.feature" version="0.0.1.qualifier">
+      <category name="Timeline"/>
+   </feature>
+   <category-def name="Timeline" label="Timeline"/>
+   <repository-reference location="http://download.eclipse.org/e4/snapshots/org.eclipse.e4.ui" enabled="true" />
+</site>
