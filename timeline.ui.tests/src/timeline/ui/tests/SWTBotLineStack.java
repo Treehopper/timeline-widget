@@ -12,6 +12,7 @@ import org.eclipse.swtbot.swt.finder.results.VoidResult;
 import org.eclipse.swtbot.swt.finder.widgets.AbstractSWTBot;
 import org.hamcrest.SelfDescribing;
 
+import timeline.ui.AbstractRangeSelectionWidget;
 import timeline.ui.LineStack;
 
 public class SWTBotLineStack extends AbstractSWTBot<LineStack> {
@@ -33,7 +34,7 @@ public class SWTBotLineStack extends AbstractSWTBot<LineStack> {
 		});
 	}
 
-	public void dnd(LineStack widget, Point start, Point finish) {
+	public void dnd(AbstractRangeSelectionWidget widget, Point start, Point finish) {
 		// setFocus();
 		asyncExec(new VoidResult() {
 			public void run() {

@@ -58,4 +58,8 @@ public class RangeList {
 	public List<ValueRange> getRanges() {
 		return ranges;
 	}
+
+	public void clear() {
+		ranges.clear();
+	}
 }

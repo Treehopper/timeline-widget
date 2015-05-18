@@ -16,7 +16,7 @@ public class Runner {
 		Shell shell = new Shell(display);
 		shell.setLayout(new FillLayout());
 		shell.setText("Canvas Example");
-		LineStack stack = new LineStack(shell, SWT.NONE, new RangeList());
+		AbstractRangeSelectionWidget stack = new LineStack(shell, SWT.NONE, new RangeList());
 		stack.addRangeCoveredListener((range, line) -> line.addRange(range));
 		// stack.createContents(shell);
 		// createContents(shell);

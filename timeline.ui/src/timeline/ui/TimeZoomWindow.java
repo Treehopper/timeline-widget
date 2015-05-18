@@ -1,17 +1,17 @@
 package timeline.ui;
 
+import java.time.temporal.ValueRange;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import timeline.core.RangeList;
-
-public class LineStackWindow {
+public class TimeZoomWindow {
 	protected Shell shell;
 
 	public static void main(String[] args) {
-		LineStackWindow window = new LineStackWindow();
+		TimeZoomWindow window = new TimeZoomWindow();
 		window.open();
 		window.eventLoop(Display.getDefault());
 	}
@@ -39,7 +39,7 @@ public class LineStackWindow {
 		shell = new Shell();
 		shell.setLayout(new FillLayout());
 
-		AbstractRangeSelectionWidget stack = new LineStack(shell, SWT.NONE, new RangeList());
+		AbstractRangeSelectionWidget stack = new TimeZoomWidget(shell, SWT.NONE, ValueRange.of(100, 1000));
 		stack.addRangeCoveredListener((range, line) -> line.addRange(range));
 	}
 }
