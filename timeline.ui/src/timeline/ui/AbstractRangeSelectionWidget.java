@@ -21,16 +21,15 @@ import org.eclipse.swt.widgets.Composite;
 import timeline.core.RangeList;
 
 public abstract class AbstractRangeSelectionWidget extends Canvas {
-	protected static final int LINE_RIGHT = 60;
-	protected static final int LINE_LEFT = 30;
-	protected static final int LINE_TOP = 10;
-	protected static final int LINE_HEIGHT = 45;
 	protected RangeList rangeList;
 	protected List<RangeCoveredListener> rangeCoveredListeners = new ArrayList<>();
 	private ValueRange baseRange;
+	protected Color rangeColor;
+	protected Rectangle currentSize;
 
-	public AbstractRangeSelectionWidget(Composite shell, int style, RangeList rangeList) {
+	public AbstractRangeSelectionWidget(Composite shell, int style, ValueRange baseRange, RangeList rangeList) {
 		super(shell, style);
+		this.baseRange = baseRange;
 		this.rangeList = rangeList;
 
 		final AtomicBoolean isMouseDown = new AtomicBoolean();
@@ -61,7 +60,7 @@ public abstract class AbstractRangeSelectionWidget extends Canvas {
 				int start = (int) valueRange.getMinimum();
 				int end = (int) valueRange.getMaximum();
 				int width = end - start;
-				redraw(start, LINE_TOP + 1, width, LINE_HEIGHT - 1, false);
+				redraw(start, getTop() + 1, width, getLineHeight() - 1, false);
 			}
 		});
 		addMouseListener(new MouseAdapter() {
@@ -93,41 +92,23 @@ public abstract class AbstractRangeSelectionWidget extends Canvas {
 
 		// Create a paint handler for the canvas
 		addPaintListener(new PaintListener() {
+
 			public void paintControl(PaintEvent e) {
-				// Do some drawing
-				Rectangle rect = ((Canvas) e.widget).getBounds();
+				currentSize = ((Canvas) e.widget).getBounds();
 				GC gc = e.gc;
-				gc.drawFocus(5, 5, rect.width - 10, rect.height - 10);
+				drawBackground(gc, currentSize);
 				for (ValueRange valueRange : rangeList.getRanges()) {
-					Color red = e.display.getSystemColor(SWT.COLOR_RED);
-					drawPeriod(gc, valueRange, red);
+					drawPeriod(gc, currentSize, valueRange, getRangeColor());
 				}
 
 				if (isMouseDown.get()) {
-					gc.setAlpha(40);
-					drawRectangle(gc, startX.get(), currentMouseX.get(), e.display.getSystemColor(SWT.COLOR_BLACK));
+					gc.setAlpha(getSelectionAlpha());
+					drawRectangle(gc, currentSize, startX.get(), currentMouseX.get(), getSelectionColor());
 					gc.setAlpha(255);
 				}
 
-				drawBorder(e, rect, gc);
+				drawBorder(gc, e, currentSize);
 
-			}
-
-			private void drawPeriod(GC gc, ValueRange valueRange, Color red) {
-				drawRectangle(gc, (int) valueRange.getMinimum(), (int) valueRange.getMaximum(), red);
-			}
-
-			private void drawBorder(PaintEvent e, Rectangle rect, GC gc) {
-				gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
-				gc.drawRectangle(LINE_LEFT, LINE_TOP, rect.width - LINE_RIGHT, LINE_HEIGHT);
-			}
-
-			private void drawRectangle(GC gc, int start, int end, Color color) {
-				gc.setForeground(color);
-				gc.setBackground(color);
-				int width = end - start;
-				// gc.drawRectangle(start, LINE_TOP, width, LINE_HEIGHT);
-				gc.fillRectangle(start, LINE_TOP, width, LINE_HEIGHT);
 			}
 		});
 	}
@@ -156,8 +137,66 @@ public abstract class AbstractRangeSelectionWidget extends Canvas {
 		rangeList.clear();
 	}
 
-	public ValueRange getRange() {
+	public ValueRange getBaseRange() {
 		return baseRange;
 	}
 
+	protected Color getRangeColor() {
+		return getDisplay().getSystemColor(SWT.COLOR_RED);
+	}
+
+	protected int getSelectionAlpha() {
+		return 40;
+	}
+
+	protected Color getSelectionColor() {
+		return getDisplay().getSystemColor(SWT.COLOR_BLACK);
+	}
+
+	protected Color getBorderColor() {
+		return getDisplay().getSystemColor(SWT.COLOR_BLACK);
+	}
+
+	protected Color getForegroundColor() {
+		return getDisplay().getSystemColor(SWT.COLOR_BLACK);
+	}
+
+	protected int getRangeAlpha() {
+		return 255;
+	}
+
+
+	protected void drawBackground(GC gc, Rectangle rect) {
+		// gc.drawFocus(5, 5, rect.width - 10, rect.height - 10);
+	}
+
+	private void drawPeriod(GC gc, Rectangle rect, ValueRange valueRange, Color color) {
+		drawRectangle(gc, rect, (int) valueRange.getMinimum(), (int) valueRange.getMaximum(), color);
+	}
+
+	private void drawBorder(GC gc, PaintEvent e, Rectangle rect) {
+		gc.setForeground(getForegroundColor());
+		gc.drawRectangle(getLeft(), getTop(), getRight(), getLineHeight());
+	}
+
+	abstract protected int getRight();
+
+	abstract protected int getTop();
+
+	abstract protected int getLeft();
+
+	protected int getLineHeight() {
+		return 45;
+	}
+
+	private void drawRectangle(GC gc, Rectangle rect, int start, int end, Color color) {
+		int oldAlpha = gc.getAlpha();
+		gc.setAlpha(getRangeAlpha());
+		gc.setForeground(color);
+		gc.setBackground(color);
+		int width = end - start;
+		// gc.drawRectangle(start, LINE_TOP, width, LINE_HEIGHT);
+		gc.fillRectangle(start, getTop(), width, getLineHeight());
+		gc.setAlpha(oldAlpha);
+	}
 }

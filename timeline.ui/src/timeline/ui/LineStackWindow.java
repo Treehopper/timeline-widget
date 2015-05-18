@@ -1,5 +1,7 @@
 package timeline.ui;
 
+import java.time.temporal.ValueRange;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
@@ -39,7 +41,7 @@ public class LineStackWindow {
 		shell = new Shell();
 		shell.setLayout(new FillLayout());
 
-		AbstractRangeSelectionWidget stack = new LineStack(shell, SWT.NONE, new RangeList());
+		AbstractRangeSelectionWidget stack = new LineStack(shell, SWT.NONE, ValueRange.of(100, 1000), new RangeList());
 		stack.addRangeCoveredListener((range, line) -> line.addRange(range));
 	}
 }

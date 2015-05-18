@@ -1,5 +1,7 @@
 package timeline.ui;
 
+import java.time.temporal.ValueRange;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
@@ -16,7 +18,7 @@ public class Runner {
 		Shell shell = new Shell(display);
 		shell.setLayout(new FillLayout());
 		shell.setText("Canvas Example");
-		AbstractRangeSelectionWidget stack = new LineStack(shell, SWT.NONE, new RangeList());
+		AbstractRangeSelectionWidget stack = new LineStack(shell, SWT.NONE, ValueRange.of(10, 100), new RangeList());
 		stack.addRangeCoveredListener((range, line) -> line.addRange(range));
 		// stack.createContents(shell);
 		// createContents(shell);
